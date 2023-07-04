@@ -4,7 +4,7 @@ services:
     image: mysql:latest
     restart: always
     environment:
-      MYSQL_DATABASE: 'dmy_database'
+      MYSQL_DATABASE: 'my_database'
       # So you don't have to use root, but you can if you like
       MYSQL_USER: 'user'
       # You can use whatever password you like
@@ -21,11 +21,11 @@ services:
       - '3306'
       # Where our data will be persisted
     volumes:
-      - ./containerVol/mysql:/var/lib/data
+      - ./containerVol/mysql:/var/lib/mysql
 
 
   apiNode:
-      image: node:18
+      image: fullcycledesafio2_api:latest
       restart: always
       networks: 
         - gateway
@@ -35,10 +35,9 @@ services:
         - '3000'
       depends_on:
       - db
-        - 
+         
 # Names our volume
-volumes:
-  my-db:
+
 networks:
   gateway: {}
 
