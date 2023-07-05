@@ -25,13 +25,12 @@ build/Release
 
 # Dependency directory
 # https://docs.npmjs.com/cli/shrinkwrap#caveats
-node_modules
-
+apinode/node_modules
+*node_modules
 # Debug log from npm
 npm-debug.log
 
 .DS_Store
 
 .env
-
-container/mysql/*
+/mysql/*
