@@ -23,11 +23,13 @@ services:
     build:
       context: ./apinode
     container_name: apinode
-    entrypoint: dockerize -wait tcp://db:3306 -timeout 20s docker-entrypoint.sh
-    command: "node index.js"
+    entrypoint: wait-for db:3306 -t 40 -- sh /usr/src/app/start.sh
+    #command: "cd /usr/src/app/ && node index.js"
     volumes:
       - ./apinode:/usr/src/app
       - /usr/src/app/node_modules
+    expose:
+      - '3000'
     tty: true
     networks:
       - gateway
